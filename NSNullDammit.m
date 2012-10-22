@@ -4,7 +4,7 @@
 
 - (void) setToNull:(NSString*)key
 {
-    SEL setter = NSSelectorFromNSString(key);
+    SEL setter = NSSelectorFromString(key);
     if ( [self respondsToSelector:SEL] )
         [self performSelector:SEL withObject:[NSNull null]];
     else
