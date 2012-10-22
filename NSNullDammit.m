@@ -5,8 +5,8 @@
 - (void) setToNull:(NSString*)key
 {
     SEL setter = NSSelectorFromString(key);
-    if ( [self respondsToSelector:SEL] )
-        [self performSelector:SEL withObject:[NSNull null]];
+    if ( [self respondsToSelector:setter] )
+        [self performSelector:setter withObject:[NSNull null]];
     else
         [self performSelector:@selector(setObject:forKey:) withObject:[NSNull null] withObject:key];
 }
