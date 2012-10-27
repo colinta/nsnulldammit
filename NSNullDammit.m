@@ -4,11 +4,22 @@
 
 - (void) setToNull:(NSString*)key
 {
+    [NSNullDammit setToNull:key target:self];
+}
+
+@end
+
+
+@implementation NSNullDammit
+
++ (void) setToNull:(NSString*)key target:(id)object
+{
     SEL setter = NSSelectorFromString(key);
-    if ( [self respondsToSelector:setter] )
-        [self performSelector:setter withObject:[NSNull null]];
+    if ( [object respondsToSelector:setter] )
+        [object performSelector:setter withObject:[NSNull null]];
     else
-        [self performSelector:@selector(setObject:forKey:) withObject:[NSNull null] withObject:key];
+        [object performSelector:@selector(setObject:forKey:) withObject:[NSNull null] withObject:key];
+
 }
 
 @end
