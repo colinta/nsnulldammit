@@ -24,11 +24,16 @@
 
 + (void) setToNull:(NSString*)key target:(id)object
 {
-    SEL setter = NSSelectorFromString(key);
+    // change 'myProperty' to 'setMyProperty:'
+    // head = 'setM'
+    // tail = 'yProperty:'
+    NSString *head = [@"set" stringByAppendingString:[[key substringWithRange:NSMakeRange(0, 1)] capitalizedString]];
+    NSString *tail = [[key substringFromIndex:1] stringByAppendingString:@":"];
+    SEL setter = NSSelectorFromString([head stringByAppendingString:tail]);
     if ( [object respondsToSelector:setter] )
         [object performSelector:setter withObject:[NSNull null]];
     else
-        [object performSelector:@selector(setObject:forKey:) withObject:[NSNull null] withObject:key];
+        [object setObject:[NSNull null] forKey:key];
 }
 
 + (void) setIndexToNull:(NSInteger)index target:(id)object
