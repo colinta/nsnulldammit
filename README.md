@@ -16,7 +16,7 @@ dict = {}
 array = [1,2,3]
 person = Person.new
 
-dict.setToNull('key)      # dict['key'] = NSNull.null
+dict.setToNull('key')     # dict['key'] = NSNull.null
 array.setIndexToNull(1)   # array[1] = NSNull.null
 array.appendNull          # array << NSNull.null
 person.setToNull('email') # person.email = NSNull.null
